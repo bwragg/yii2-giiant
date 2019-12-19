@@ -312,6 +312,9 @@ class Generator extends \yii\gii\generators\crud\Generator
 
     public function generate()
     {
+        if (Yii::$app instanceof \yii\console\Application){
+            $this->providerList=explode(',',$this->providerList);
+        }
         $accessDefinitions = require $this->getTemplatePath().'/access_definition.php';
 
         $this->controllerNs = \yii\helpers\StringHelper::dirname(ltrim($this->controllerClass, '\\'));
